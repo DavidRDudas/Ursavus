@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Ursavus</title>
+  <meta name="description" content="Talk to the people who build Ursavus. A question about the product, a collaboration, or an introduction — write to us directly.">
+  <meta name="theme-color" content="#0A0B0F">
+  <meta name="color-scheme" content="dark light">
+  <script>
+    (function(){var t;try{t=localStorage.getItem("urs-theme");}catch(e){}
+      if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";}
+      document.documentElement.setAttribute("data-theme",t);document.documentElement.classList.add("js");
+      try{if("scrollRestoration"in history)history.scrollRestoration="manual";}catch(e2){}})();
+  </script>
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/fraunces-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <header class="site-head">
+    <div class="wrap head-row">
+      <a class="brand magnetic" href="index.html" aria-label="Ursavus — home">
+        <svg class="mark" viewBox="0 0 48 56" aria-hidden="true">
+          <circle cx="10" cy="14" r="8.5"/><circle cx="38" cy="14" r="8.5"/>
+          <path fill-rule="evenodd" d="M4,24 C4,12 14,8 24,8 C34,8 44,12 44,24 L44,33 C44,45 35,50 24,50 C13,50 4,45 4,33 Z M14,28.5 a2.7,2.7 0 1,0 5.4,0 a2.7,2.7 0 1,0 -5.4,0 z M28.6,28.5 a2.7,2.7 0 1,0 5.4,0 a2.7,2.7 0 1,0 -5.4,0 z M20.2,37 a3.8,3.8 0 1,0 7.6,0 a3.8,3.8 0 1,0 -7.6,0 z"/>
+        </svg>
+        Ursavus
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html#origin">Origin</a>
+        <a href="index.html#work">Work</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+      <div class="head-tools">
+        <button class="tt magnetic" type="button" aria-label="Switch theme"><span class="tt-disc"></span></button>
+        <button class="burger" type="button" aria-label="Menu" aria-expanded="false">
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="section" style="padding-top:clamp(120px,18vh,200px);padding-bottom:clamp(30px,5vh,50px)">
+      <div class="wrap">
+        <p class="hero-eyebrow reveal"><span class="rule"></span><span class="tag tag--accent">Contact</span></p>
+        <h1 class="disp reveal" style="--d:60;font-size:clamp(2.8rem,8vw,6.4rem)">Talk to a <em>person.</em></h1>
+        <p class="lead reveal" style="--d:140;max-width:56ch;margin-top:1em">We are small by design and we answer every message ourselves. Whether you have a question about the product, want to work together, or are thinking about joining — the form below comes straight to us.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0" aria-label="Send a message">
+      <div class="wrap">
+        <div class="grid12" style="row-gap:clamp(28px,4vw,44px)">
+          <form class="form reveal" id="cform" action="https://formspree.io/f/mwvdobpg" method="POST" style="grid-column:1/span 7" novalidate>
+            <div class="field">
+              <label for="cf-name">Name</label>
+              <input id="cf-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="cf-msg">What's on your mind</label>
+              <textarea id="cf-msg" name="message" rows="5" required></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="New message from the Ursavus website">
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+            <div id="cf-ts" class="cf-turnstile" style="margin:.1em 0 .2em"></div>
+            <div class="btnrow">
+              <button class="btn btn--solid magnetic" type="submit">Send message <span class="arr" aria-hidden="true">→</span></button>
+            </div>
+            <p class="mono faint" id="cf-note" style="font-size:11.5px;margin:0">Protected by a Cloudflare Turnstile check and delivered through Formspree — no mail client needed.</p>
+          </form>
+
+          <aside class="reveal" style="grid-column:9/span 4;--d:100">
+            <p class="plate-id" style="color:var(--accent)">Write to us</p>
+            <p style="margin:.4em 0 .2em"><a class="tlink magnetic" href="#cf-name">Start a message <span class="arr" aria-hidden="true">→</span></a></p>
+            <p class="muted" style="font-size:.95rem">We read everything and reply to most things within two working days.</p>
+            <hr style="margin:1.6em 0">
+            <p class="plate-id" style="color:var(--accent)">What to include</p>
+            <p class="muted" style="font-size:.95rem;margin-top:.5em">A sentence on the problem, the scale you're operating at, and how we can help — or just a general inquiry. Whatever's easiest for you.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- careers -->
+    <section class="section section--line" id="careers" aria-labelledby="c-careers">
+      <div class="wrap">
+        <div class="cat-head">
+          <span class="cat-num reveal">01</span>
+          <div>
+            <h2 class="cat-title reveal" id="c-careers">How we <em>hire.</em></h2>
+            <p class="cat-sub reveal" style="--d:80">Rarely, slowly, and for the long term.</p>
+          </div>
+        </div>
+        <div class="grid12">
+          <div class="prose reveal" style="grid-column:1/span 7;--d:60">
+            <p class="first">We would rather leave a seat empty than fill it carelessly. There is no application portal — send us a note and something you have made or proved: a paper, a repository, a write-up. We read it ourselves.</p>
+            <p>We value taste and depth over breadth of buzzwords, and we expect everyone here to be able to follow an argument from a vague idea to a checked proof to shipped code. If that is you, the empty seat might be yours.</p>
+          </div>
+          <aside class="margin-note reveal" style="grid-column:9/span 4;--d:140">
+            <b>How to apply</b><br>No portal, no form letters.<br>One note + one thing you made.<br>Read by a person, every time.
+          </aside>
+        </div>
+        <p class="btnrow reveal" style="--d:80;margin-top:2rem">
+          <a class="btn btn--solid magnetic" href="#cf-name">Introduce yourself <span class="arr" aria-hidden="true">→</span></a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <p class="foot-mark">
+            <svg class="mark" viewBox="0 0 48 56" aria-hidden="true">
+              <circle cx="10" cy="14" r="8.5"/><circle cx="38" cy="14" r="8.5"/>
+              <path fill-rule="evenodd" d="M4,24 C4,12 14,8 24,8 C34,8 44,12 44,24 L44,33 C44,45 35,50 24,50 C13,50 4,45 4,33 Z M14,28.5 a2.7,2.7 0 1,0 5.4,0 a2.7,2.7 0 1,0 -5.4,0 z M28.6,28.5 a2.7,2.7 0 1,0 5.4,0 a2.7,2.7 0 1,0 -5.4,0 z M20.2,37 a3.8,3.8 0 1,0 7.6,0 a3.8,3.8 0 1,0 -7.6,0 z"/>
+            </svg>
+            Ursavus
+          </p>
+          <p>An independent, founder-led software company. We build a small number of products and hold them to a high standard.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Index</h4>
+          <a href="index.html#origin">Origin</a>
+          <a href="index.html#work">Work</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="foot-col">
+          <h4>Connect</h4>
+          <a href="index.html">Home</a>
+          <a href="contact.html#careers">Careers</a>
+          <a href="#cf-name">Write to us</a>
+        </div>
+      </div>
+      <div class="foot-meta">
+        <span>© 2026 Ursavus LLC · all rights reserved</span>
+        <span>Set in Fraunces &amp; Inter · no cookies, no trackers</span>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="app.js"></script>
+  <script>
+    /* Cloudflare Turnstile — render to match the current site theme, re-render on toggle. */
+    function renderTurnstile() {
+      if (!window.turnstile) return;
+      var box = document.getElementById("cf-ts"); if (!box) return;
+      box.innerHTML = "";
+      window.__tsId = window.turnstile.render("#cf-ts", {
+        sitekey: "0x4AAAAAADriuqbim4z9RxfO",
+        theme: document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark"
+      });
+    }
+    window.addEventListener("urs:theme", renderTurnstile);
+  </script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=renderTurnstile" async defer></script>
+  <script>
+    /* Contact form → Formspree over AJAX, so the page never leaves and the custom UI stays. */
+    (function () {
+      var f = document.getElementById("cform"); if (!f) return;
+      var note = document.getElementById("cf-note");
+      var btn = f.querySelector('button[type="submit"]');
+      function say(text, isErr) { if (note) { note.textContent = text; note.style.color = isErr ? "var(--accent)" : ""; } }
+      f.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var n = (document.getElementById("cf-name").value || "").trim();
+        var em = (document.getElementById("cf-email").value || "").trim();
+        var m = (document.getElementById("cf-msg").value || "").trim();
+        if (!n || !em || !m) { say("Please add your name, email, and a message first.", true); return; }
+        var tok = f.querySelector('[name="cf-turnstile-response"]');
+        if (!tok || !tok.value) { say("Please complete the verification box first.", true); return; }
+        btn.disabled = true; say("Sending…", false);
+        fetch(f.action, { method: "POST", headers: { "Accept": "application/json" }, body: new FormData(f) })
+          .then(function (r) {
+            if (r.ok) {
+              f.reset();
+              if (window.turnstile && window.__tsId != null) { try { window.turnstile.reset(window.__tsId); } catch (e2) {} }
+              say("Thanks — your message is on its way. We reply to most things within two working days.", false);
+            } else {
+              return r.json().then(function (data) {
+                var msg = data && data.errors && data.errors.length
+                  ? data.errors.map(function (x) { return x.message; }).join(" ")
+                  : "Something went wrong — please try again in a moment.";
+                say(msg, true);
+              });
+            }
+          })
+          .catch(function () { say("Network error — please check your connection and try again.", true); })
+          .then(function () { btn.disabled = false; });
+      });
+      // links that point at the form land the cursor in the first field
+      [].forEach.call(document.querySelectorAll('a[href="#cf-name"]'), function (a) {
+        a.addEventListener("click", function () {
+          var el = document.getElementById("cf-name");
+          if (el) setTimeout(function () { try { el.focus({ preventScroll: true }); } catch (e3) { el.focus(); } }, 420);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
