@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-  <title>Ursavus</title>
-  <g fill="#6E63F0" transform="translate(0 10)">
-    <circle cx="112" cy="122" r="77"/>
-    <circle cx="400" cy="122" r="77"/>
-    <path fill-rule="evenodd" d="M184,70 h144 a150,150 0 0 1 150,150 v76 a150,150 0 0 1 -150,150 h-144 a150,150 0 0 1 -150,-150 v-76 a150,150 0 0 1 150,-150 z M182,239 a27,23 0 1 0 0.1,0 z M330,239 a27,23 0 1 0 0.1,0 z M256,298 a46,38 0 1 0 0.1,0 z"/>
-  </g>
-</svg>
