@@ -100,7 +100,7 @@
       0:   { when: "≈ 20,000,000 yr ago", era: "The dawn bear", note: "A small, fox-sized animal appears in the Miocene — the first undisputed bear, and the origin every living bear descends from." },
       25:  { when: "≈ 15,000,000 yr ago", era: "Divergence", note: "The living bear lineages branch away from Ursavus. The body plan is settled; everything later inherits it." },
       75:  { when: "≈ 5,000,000 yr ago", era: "Radiation", note: "Bears spread across Asia, Europe, and the Americas. The shape proves durable across deep time." },
-      100: { when: "Today", era: "Ursavus, LLC", note: "Independent software, built on the same idea — get the origin right, and what comes after can stand on it." }
+      100: { when: "Today", era: "Ursavus, the studio", note: "An independent game studio, built on the same idea — get the origin right, and what comes after can stand on it." }
     };
     var keys = [0, 25, 75, 100];
     var cur = 0;
