@@ -1,5 +1,5 @@
 /* ============================================================================
-   URSAVUS — v2  ·  "A field guide to a deliberate software company"
+   URSAVUS — v2  ·  "A field guide to a deliberate game studio"
    Editorial / Swiss system with an exposed mathematical grid, taxonomic
    marginalia, and a deep-time signature. Fraunces · Inter · mono. Dual theme.
    ============================================================================ */
@@ -204,7 +204,7 @@ em{font-style:italic;}
 .mark-row h3{font-size:clamp(1.3rem,2.2vw,1.9rem);}
 .mark-row p{margin:0;color:var(--ink-2);max-width:54ch;}
 
-/* specimen plate (products) */
+/* specimen plate (games) */
 .plate{border:1px solid var(--line);background:linear-gradient(180deg,var(--panel),var(--bg-2));border-radius:4px;overflow:hidden;position:relative;transition:border-color .3s,transform .3s;}
 .plate:hover{border-color:var(--line-2);transform:translateY(-3px);}
 .plate-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:clamp(22px,3vw,32px);border-bottom:1px solid var(--line);}
