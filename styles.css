@@ -197,7 +197,7 @@ em{font-style:italic;}
 
 /* field marks (principles) */
 .marks{border-top:1px solid var(--line);}
-.mark-row{display:grid;grid-template-columns:auto minmax(0,16ch) 1fr;gap:clamp(14px,3vw,44px);align-items:baseline;
+.mark-row{display:grid;grid-template-columns:auto minmax(0,15rem) 1fr;gap:clamp(14px,3vw,44px);align-items:baseline;
   padding:clamp(22px,3vw,34px) 0;border-bottom:1px solid var(--line);transition:padding-left .35s cubic-bezier(.22,.61,.36,1);}
 .mark-row:hover{padding-left:10px;}
 .mark-row .ix{font-family:var(--mono);font-size:12px;color:var(--accent);}

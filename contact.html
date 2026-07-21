@@ -9,7 +9,7 @@
   <meta name="color-scheme" content="dark light">
   <script>
     (function(){var t;try{t=localStorage.getItem("urs-theme");}catch(e){}
-      if(t!=="light"&&t!=="dark"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";}
+      if(t!=="light"&&t!=="dark"){t="dark";}
       document.documentElement.setAttribute("data-theme",t);document.documentElement.classList.add("js");
       try{if("scrollRestoration"in history)history.scrollRestoration="manual";}catch(e2){}})();
   </script>
