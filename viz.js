@@ -10,10 +10,13 @@
     return { accent: s.getPropertyValue("--accent").trim(), accent2: s.getPropertyValue("--accent-2").trim() };
   }
   function setup(canvas) {
-    var ctx = canvas.getContext("2d"), dpr = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0;
-    function resize() { W = canvas.clientWidth; H = canvas.clientHeight; canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+    var ctx = canvas.getContext("2d"), dpr = 0, W = 0, H = 0;
+    function resize() { dpr = Math.min(window.devicePixelRatio || 1, 2); W = canvas.clientWidth; H = canvas.clientHeight; canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+    // the backing store goes stale when layout or devicePixelRatio settles after
+    // setup (load races, zoom, monitor moves) — no resize event fires for those.
+    function stale() { return canvas.clientWidth !== W || canvas.clientHeight !== H || Math.min(window.devicePixelRatio || 1, 2) !== dpr; }
     resize();
-    return { ctx: ctx, resize: resize, W: function () { return W; }, H: function () { return H; } };
+    return { ctx: ctx, resize: resize, stale: stale, W: function () { return W; }, H: function () { return H; } };
   }
 
   // an organic (slightly wobbly) closed loop — so the eyes read like the rest of
@@ -45,6 +48,7 @@
     }
 
     function frame() {
+      if (s.stale()) s.resize();
       var W = s.W(), H = s.H(), ctx = s.ctx, light = !!(window.URS && window.URS.isLight && window.URS.isLight());
       ctx.clearRect(0, 0, W, H);
 
@@ -138,7 +142,9 @@
       t += 1; raf = requestAnimationFrame(frame);
     }
 
-    window.addEventListener("resize", function () { s.resize(); });
+    function redrawOnce() { frame(); cancelAnimationFrame(raf); raf = null; }
+    window.addEventListener("resize", function () { s.resize(); if (!raf) redrawOnce(); });
+    if ("ResizeObserver" in window) new ResizeObserver(function () { if (s.stale()) { s.resize(); if (!raf) redrawOnce(); } }).observe(canvas);
     if (reduce) { frame(); cancelAnimationFrame(raf); raf = null; }
     else {
       new IntersectionObserver(function (en) {
