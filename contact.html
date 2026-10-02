@@ -16,8 +16,8 @@
   <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="preload" href="../fonts/fraunces-600.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/fraunces-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body id="top">
@@ -81,7 +81,7 @@
             <div class="btnrow">
               <button class="btn btn--solid magnetic" type="submit">Send message <span class="arr" aria-hidden="true">→</span></button>
             </div>
-            <p class="mono faint" id="cf-note" style="font-size:11.5px;margin:0">Protected by a Cloudflare Turnstile check and delivered through Formspree — no mail client needed.</p>
+            <p class="mono faint" id="cf-note" role="status" aria-live="polite" style="font-size:11.5px;margin:0">Protected by a Cloudflare Turnstile check and delivered through Formspree — no mail client needed.</p>
           </form>
 
           <aside class="reveal" style="grid-column:9/span 4;--d:100">
@@ -189,6 +189,7 @@
         var em = (document.getElementById("cf-email").value || "").trim();
         var m = (document.getElementById("cf-msg").value || "").trim();
         if (!n || !em || !m) { say("Please add your name, email, and a message first.", true); return; }
+        if (!f.reportValidity()) { say("Please enter a valid email address.", true); return; }
         var tok = f.querySelector('[name="cf-turnstile-response"]');
         if (!tok || !tok.value) { say("Please complete the verification box first.", true); return; }
         btn.disabled = true; say("Sending…", false);

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
+  <title>KLAST — precision in orbit</title>
+  <desc>Original abstract artwork: a faceted starfighter accelerates across a luminous orbital arena surrounded by geometric asteroids, in coral and violet.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" stroke="#8595c1" stroke-opacity=".07"/></pattern>
+    <radialGradient id="aura"><stop stop-color="#783048" stop-opacity=".36"/><stop offset=".5" stop-color="#49203c" stop-opacity=".17"/><stop offset="1" stop-color="#090d16" stop-opacity="0"/></radialGradient>
+    <radialGradient id="violet-aura"><stop stop-color="#8b57ed" stop-opacity=".23"/><stop offset="1" stop-color="#8b57ed" stop-opacity="0"/></radialGradient>
+    <linearGradient id="orbit" x1="122" y1="186" x2="662" y2="415" gradientUnits="userSpaceOnUse"><stop stop-color="#a480ff"/><stop offset=".35" stop-color="#64547d"/><stop offset=".65" stop-color="#ff7368"/><stop offset="1" stop-color="#ffc093"/></linearGradient>
+    <linearGradient id="hull" x1="-88" y1="-51" x2="70" y2="95" gradientUnits="userSpaceOnUse"><stop stop-color="#ffc4a2"/><stop offset=".37" stop-color="#ff6a64"/><stop offset="1" stop-color="#723758"/></linearGradient>
+    <linearGradient id="engine" x1="0" y1="91" x2="0" y2="258" gradientUnits="userSpaceOnUse"><stop stop-color="#ffdac1"/><stop offset=".18" stop-color="#fa825d" stop-opacity=".8"/><stop offset="1" stop-color="#f67088" stop-opacity="0"/></linearGradient>
+    <linearGradient id="stone" x1="-40" y1="-40" x2="40" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#4f4159"/><stop offset="1" stop-color="#181d31"/></linearGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5"/></filter>
+    <g id="asteroid"><path d="m-37-12 15-27 37-8 32 26 5 34-31 29-41-5-23-25Z" fill="url(#stone)" stroke="#a282a6" stroke-opacity=".56"/><path d="m-37-12 33 10-18-37m18 37 19-45 17 40 15-14M-4-2l36-5 20 20-31 2-43 24L-4-2Zm25 17 0 27" stroke="#b496b6" stroke-opacity=".35"/><path d="m-22-39 18 37 19-45Z" fill="#bc899e" fill-opacity=".1"/></g>
+  </defs>
+  <path fill="#090d16" d="M0 0h800v600H0z"/>
+  <path fill="url(#grid)" d="M0 0h800v600H0z"/>
+  <ellipse cx="424" cy="300" rx="357" ry="272" fill="url(#aura)"/>
+  <ellipse cx="220" cy="362" rx="227" ry="228" fill="url(#violet-aura)"/>
+  <g stroke="#9394b4" stroke-opacity=".13"><circle cx="403" cy="300" r="212"/><circle cx="403" cy="300" r="218" stroke-dasharray="1 14"/><path d="M403 56v53m0 382v52M159 300h46m391 0h51" stroke-dasharray="3 7"/></g>
+  <g transform="rotate(-21 403 302)">
+    <ellipse cx="403" cy="302" rx="299" ry="134" stroke="url(#orbit)" stroke-opacity=".18" stroke-width="22"/>
+    <ellipse cx="403" cy="302" rx="299" ry="134" stroke="url(#orbit)" stroke-opacity=".42" stroke-width="1.4"/>
+    <ellipse cx="403" cy="302" rx="311" ry="146" stroke="url(#orbit)" stroke-opacity=".2" stroke-dasharray="5 10"/>
+    <path d="M104 302c0-74 134-134 299-134" stroke="#a487e7" stroke-opacity=".72" stroke-width="3"/>
+    <path d="M403 436c145 0 266-46 294-107" stroke="#ff9a7a" stroke-opacity=".7" stroke-width="3"/>
+    <path d="M681 329h23m-11-11v22M103 270v17m-8-8h16" stroke="#dbaac3" stroke-opacity=".75"/>
+  </g>
+  <g stroke="#c396b7" stroke-opacity=".17">
+    <ellipse cx="403" cy="302" rx="171" ry="84" transform="rotate(26 403 302)"/>
+    <ellipse cx="403" cy="302" rx="171" ry="84" transform="rotate(-52 403 302)"/>
+    <circle cx="403" cy="302" r="171"/>
+    <path d="m242 244 284 158m-290-56 316-95m-222-93 121 310m-28-336-41 340"/>
+  </g>
+  <g opacity=".86"><use href="#asteroid" transform="translate(177 253) rotate(-15) scale(.9)"/><use href="#asteroid" transform="translate(596 388) rotate(20) scale(1.1)"/><use href="#asteroid" transform="translate(564 149) rotate(-45) scale(.62)"/><use href="#asteroid" transform="translate(260 466) rotate(40) scale(.66)"/><use href="#asteroid" transform="translate(639 247) rotate(17) scale(.37)"/><use href="#asteroid" transform="translate(300 140) rotate(20) scale(.28)"/></g>
+  <g stroke="#df8d8e" stroke-opacity=".45"><path d="m105 412 53-27m481-232 53-27m-509 0 30 15m320 323 30 15"/><path d="m125 429 34-17m466-277 29-14" stroke-opacity=".3"/></g>
+  <g transform="translate(418 297) rotate(39)">
+    <path d="m-38 89 25 165 13-119 13 119 25-165Z" fill="url(#engine)" opacity=".55" filter="url(#glow)"/>
+    <path d="M-28 89-11 247 0 120 12 231 27 89" fill="url(#engine)"/>
+    <path d="m-16 106 11 48 5-43 5 43 11-48Z" fill="#ffc9a5" opacity=".9"/>
+    <path d="M0-140 27-24 115 84 34 60 18 97H-18L-34 60-115 84-27-24Z" fill="url(#hull)" stroke="#ffa997" stroke-width="1.7"/>
+    <path d="M0-140 0 69 27-24Z" fill="#ffcbad" fill-opacity=".22"/>
+    <path d="M0-140-27-24 0 69Z" fill="#522a48" fill-opacity=".5"/>
+    <path d="m27-24 88 108-81-24L15 18Z" fill="#b64162"/>
+    <path d="m-27-24-88 108 81-24 19-42Z" fill="#392539"/>
+    <path d="m27-24 51 84 37 24m-142-108-51 84-37 24M0-140v40m-34 160 34 9 34-9M0 69v28" stroke="#ffd9bc" stroke-opacity=".58"/>
+    <path d="M0-73 13-15 0 13-13-15Z" fill="#171a32" stroke="#ffc3a6" stroke-opacity=".6"/>
+    <path d="M0-59 6-17 0-2-6-17Z" fill="#bb91ff"/>
+    <path d="m-84 64 38-21m92 0 38 21" stroke="#ffdfbf" stroke-width="2"/>
+    <path d="M-27 91h17m20 0h17" stroke="#ffdfbc" stroke-width="3"/>
+    <path d="M-26-9v-49m52 49v-49" stroke="#ffb393" stroke-width="2"/>
+    <path d="M-26-70v-35m52 35v-35" stroke="#ffb393" stroke-width="2" stroke-opacity=".62"/>
+  </g>
+  <g fill="#ffbc91"><path d="m612 96 5 10 10 5-10 5-5 10-5-10-10-5 10-5Z"/><circle cx="628" cy="306" r="2.1"/><circle cx="268" cy="206" r="1.5"/><circle cx="538" cy="482" r="1.5"/><circle cx="197" cy="440" r="1.2"/></g>
+  <g fill="#b994f6"><circle cx="178" cy="342" r="2.5"/><circle cx="359" cy="106" r="1.6"/><circle cx="689" cy="343" r="1.4"/><circle cx="300" cy="389" r="1.6"/></g>
+  <g stroke="#e7bbd2" stroke-opacity=".5"><path d="M212 182h9m-4-4v8M550 286h8m-4-4v8M374 466h9m-4-4v8M677 427h7m-3-3v6"/></g>
+  <g stroke="#737f9e" stroke-opacity=".45"><path d="M40 65V40h25m670 0h25v25M40 535v25h25m670 0h25v-25M390 40h20M390 560h20"/><path d="M40 294v12m720-12v12"/></g>
+</svg>

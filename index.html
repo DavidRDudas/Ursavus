@@ -7,6 +7,8 @@
   <meta name="description" content="Ursavus is an independent, founder-led video game studio named for the dawn bear — the small Miocene ancestor of every living bear. We make a small number of games and hold each to a high standard.">
   <meta name="theme-color" content="#0A0B0F">
   <meta name="color-scheme" content="dark light">
+  <link rel="canonical" href="https://ursavus.com/">
+  <meta property="og:url" content="https://ursavus.com/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ursavus — Games, built deliberately.">
   <meta property="og:description" content="An independent, founder-led video game studio. We make a small number of games and hold each to a high standard.">
@@ -19,8 +21,8 @@
   <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="preload" href="../fonts/fraunces-600.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/fraunces-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body id="top">
@@ -38,8 +40,8 @@
         Ursavus
       </a>
       <nav class="nav" aria-label="Primary">
-        <a href="#origin">Origin</a>
         <a href="#games">Games</a>
+        <a href="#origin">Origin</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </nav>
@@ -55,14 +57,38 @@
   <main id="main">
 
     <!-- HERO -->
-    <section class="hero">
-      <canvas id="field" class="hero-field hero-field--ripple" data-mode="ripple" aria-hidden="true"></canvas>
+    <section class="hero hero--home">
       <div class="wrap">
-        <p class="hero-eyebrow reveal"><span class="rule"></span><span class="tag tag--accent">Independent · founder-led game studio</span></p>
-        <h1 class="disp reveal" style="--d:60">Games, built <em>deliberately.</em></h1>
-        <div class="hero-foot">
-          <p class="lead reveal" style="--d:140">Ursavus is an independent game studio named for the <em>dawn bear</em> — the small, ancestral origin every living bear descends from. We make a few games and hold each to a high standard.</p>
-          <span class="scroll-cue reveal" style="--d:220">Scroll <span class="bar"></span></span>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="hero-eyebrow reveal"><span class="rule"></span><span class="tag tag--accent">Independent · founder-led</span></p>
+            <h1 class="disp reveal" style="--d:60">Games, built<br><em>deliberately.</em></h1>
+            <p class="lead reveal" style="--d:140">A small studio. Distinct worlds. We make a few games and hold each to a high standard — built for curiosity, precision, and one more run.</p>
+            <div class="btnrow hero-actions reveal" style="--d:200">
+              <a class="btn btn--primary magnetic" href="#games">Explore our games <span class="arr" aria-hidden="true">↗</span></a>
+              <a class="tlink magnetic" href="about.html">Meet the studio <span class="arr" aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <div class="field-console reveal" style="--d:180" role="group" aria-label="Interactive mathematical field">
+            <div class="field-topline"><span class="field-status"><i aria-hidden="true"></i> A study in emergence</span><span>URS / 001</span></div>
+            <canvas id="field" class="hero-field hero-field--ripple" data-mode="ripple" aria-hidden="true"></canvas>
+            <span class="field-coordinate" aria-hidden="true">x → ∞<br>y → possibility</span>
+            <div class="field-bottom">
+              <div class="field-readout"><span id="field-caption">Interference</span><span>k = <span id="field-value">5.00</span></span></div>
+              <div class="field-controls">
+                <div class="field-presets" role="group" aria-label="Field pattern">
+                  <button type="button" data-field-mode="ripple" aria-pressed="true">Interference</button>
+                  <button type="button" data-field-mode="lattice" aria-pressed="false">Dawn bear</button>
+                  <button type="button" data-field-mode="orbit" aria-pressed="false">Orbital</button>
+                </div>
+                <button class="field-pause" type="button" data-field-pause aria-pressed="false"><span data-field-pause-label>Pause motion</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-bottom reveal" style="--d:260">
+          <p>Named for the dawn bear. Made for what comes next.</p>
+          <a class="scroll-cue" href="#games">Discover <span class="bar" aria-hidden="true"></span></a>
         </div>
       </div>
     </section>
@@ -79,11 +105,119 @@
       </div>
     </div>
 
-    <!-- 00 ORIGIN — deep-time signature -->
-    <section class="section deeptime" id="origin" aria-labelledby="origin-t">
+    <!-- 00 GAMES -->
+    <section class="section section--line" id="games" aria-labelledby="games-t">
       <div class="wrap">
         <div class="cat-head">
           <span class="cat-num reveal">00</span>
+          <div>
+            <h2 class="cat-title reveal" id="games-t">Find your <em>next obsession.</em></h2>
+            <p class="cat-sub reveal" style="--d:80">Three distinct worlds. One deliberate approach.</p>
+          </div>
+        </div>
+
+        <div class="grid12" style="row-gap:clamp(20px,3vw,30px)">
+          <article class="plate game-plate reveal" id="painted-crowns" data-game="painted-crowns" style="grid-column:1/span 12">
+            <figure class="game-art" aria-label="Painted Crowns geometric illustration">
+              <img src="art-painted-crowns.svg" alt="" width="800" height="600" loading="lazy" decoding="async">
+              <figcaption><span class="art-number">01 / Procedural descent</span><span class="art-caption">Every seed, another story.</span></figcaption>
+            </figure>
+            <div class="game-copy">
+            <div class="plate-head">
+              <div>
+                <h3 class="plate-name">Painted Crowns</h3>
+              </div>
+              <p class="plate-kind">Dungeon roguelike</p>
+            </div>
+            <div class="plate-body">
+              <p class="sum">A dungeon that grows from a single seed.</p>
+              <p>Every floor is procedurally generated — grown from a seed rather than hand-placed — and the difficulty adapts to how you actually play. Built in Unity. No two descents are the same, and none of them are unfair.</p>
+              <details class="game-details"><summary>Inside the game <span aria-hidden="true">+</span></summary><dl class="specs">
+                <div><dt>Procedural depth</dt><dd>Floors grown from a single seed — coherent and surprising, never the same twice.</dd></div>
+                <div><dt>Adaptive difficulty</dt><dd>The dungeon reads how you play and pushes back to match — challenging, never cheap.</dd></div>
+                <div><dt>Roguelike discipline</dt><dd>Runs that matter. Death is permanent; what you learn is not.</dd></div>
+                <div><dt>Status</dt><dd>Available now on Steam.</dd></div>
+              </dl></details>
+              <p class="btnrow" style="margin:1.1em 0 0;justify-content:space-between">
+                <a class="tlink magnetic" href="contact.html#cform">Talk to us about Painted Crowns <span class="arr" aria-hidden="true">→</span></a>
+                <a class="btn steam-link magnetic" href="https://store.steampowered.com/app/5192590/Painted_Crowns/" aria-label="View Painted Crowns on Steam" title="View Painted Crowns on Steam">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg> <span>View on Steam</span><span class="arr" aria-hidden="true">↗</span>
+                </a>
+              </p>
+            </div>
+                      </div>
+          </article>
+
+          <article class="plate game-plate reveal" id="klast" data-game="klast" style="grid-column:1/span 12;--d:80">
+            <figure class="game-art" aria-label="Klast geometric illustration">
+              <img src="art-klast.svg" alt="" width="800" height="600" loading="lazy" decoding="async">
+              <figcaption><span class="art-number">02 / Neon arcade</span><span class="art-caption">Precision. Pressure. One more run.</span></figcaption>
+            </figure>
+            <div class="game-copy">
+            <div class="plate-head">
+              <div>
+                <h3 class="plate-name">Klast</h3>
+              </div>
+              <p class="plate-kind">Twin-stick arcade shooter</p>
+            </div>
+            <div class="plate-body">
+              <p class="sum">A neon arcade shooter built for one more run.</p>
+              <p>A high-intensity twin-stick shooter about speed, precision, and replayability. You pilot a customizable starfighter across three distinct combat systems, each with its own enemies, bosses, hazards, upgrades, and scoring — rendered in low-poly geometry and neon wireframe, with chromatic light, particle-heavy destruction, and transitions that move with the music.</p>
+              <details class="game-details"><summary>Inside the game <span aria-hidden="true">+</span></summary><dl class="specs">
+                <div><dt>Cycle</dt><dd>Structured rescue missions, built on precision under pressure.</dd></div>
+                <div><dt>Vector</dt><dd>Escalating arena warfare against swarms that keep coming.</dd></div>
+                <div><dt>Asteroid</dt><dd>Fully spherical planetary battles with destructible asteroids — combat wrapped around a whole world.</dd></div>
+                <div><dt>Beyond the campaigns</dt><dd>Challenge modes, endless progression, a shared hangar, achievements, bestiary entries, rankings, exportable scorecards, and AI pilots flying attract-mode demos.</dd></div>
+              </dl></details>
+              <p class="btnrow" style="margin:1.1em 0 0;justify-content:space-between">
+                <a class="tlink magnetic" href="contact.html#cform">Tell us about your best run <span class="arr" aria-hidden="true">→</span></a>
+                <a class="btn steam-link magnetic" href="https://store.steampowered.com/app/5068020/KLAST/" aria-label="View Klast on Steam" title="View Klast on Steam">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg> <span>View on Steam</span><span class="arr" aria-hidden="true">↗</span>
+                </a>
+              </p>
+            </div>
+                      </div>
+          </article>
+
+          <article class="plate game-plate reveal" id="shatterwing" data-game="shatterwing" style="grid-column:1/span 12;--d:160">
+            <figure class="game-art" aria-label="Shatterwing geometric illustration">
+              <img src="art-shatterwing.svg" alt="" width="800" height="600" loading="lazy" decoding="async">
+              <figcaption><span class="art-number">03 / Mirror combat</span><span class="art-caption">Their fire. Your weapon.</span></figcaption>
+            </figure>
+            <div class="game-copy">
+            <div class="plate-head">
+              <div>
+                <h3 class="plate-name">Shatterwing</h3>
+              </div>
+              <p class="plate-kind">Vertical bullet hell shooter</p>
+            </div>
+            <div class="plate-body">
+              <p class="sum">Turn their fire against them.</p>
+              <p>An invading fleet has learned humanity's flight patterns. Give it something it hasn't seen before. Every dash leaves a glass mirror in your wake — place it across an incoming volley and send their shots back into the fleet. Graze bullets, keep your kill chain alive, and charge your mirrors toward homing returns.</p>
+              <details class="game-details"><summary>Inside the game <span aria-hidden="true">+</span></summary><dl class="specs">
+                <div><dt>Mirror combat</dt><dd>Reflect incoming volleys and turn desperate escapes into devastating counterattacks.</dd></div>
+                <div><dt>Your ship, your run</dt><dd>Six distinct ships, 24 weapon configurations, and two selectable specials per ship — from slowing time to unleashing a giant beam.</dd></div>
+                <div><dt>Polarity</dt><dd>Switch colors to absorb matching bullets, store their energy, and release homing volleys in a second campaign mode.</dd></div>
+                <div><dt>Beyond the clear</dt><dd>Five stages, five difficulty levels, Flight Academy, Practice, Boss Run, hidden encounters, and unlockable pilot stories.</dd></div>
+              </dl></details>
+              <p class="btnrow" style="margin:1.1em 0 0;justify-content:space-between">
+                <a class="tlink magnetic" href="contact.html#cform">Ask about Shatterwing <span class="arr" aria-hidden="true">→</span></a>
+                <a class="btn steam-link magnetic" href="https://store.steampowered.com/app/5286270/Shatterwing" aria-label="View Shatterwing on Steam" title="View Shatterwing on Steam">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg> <span>View on Steam</span><span class="arr" aria-hidden="true">↗</span>
+                </a>
+              </p>
+            </div>
+                      </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 ORIGIN — deep-time signature -->
+    <section class="section deeptime" id="origin" aria-labelledby="origin-t">
+      <div class="wrap">
+        <div class="cat-head">
+          <span class="cat-num reveal">01</span>
           <div>
             <h2 class="cat-title reveal" id="origin-t">A company with a <em>deep</em> origin.</h2>
             <p class="cat-sub reveal" style="--d:80">Drag through twenty million years — Miocene to now.</p>
@@ -134,11 +268,11 @@
       </div>
     </section>
 
-    <!-- 01 THE COMPANY -->
+    <!-- 02 THE COMPANY -->
     <section class="section section--line" id="company" aria-labelledby="company-t">
       <div class="wrap">
         <div class="cat-head">
-          <span class="cat-num reveal">01</span>
+          <span class="cat-num reveal">02</span>
           <div>
             <h2 class="cat-title reveal" id="company-t">Built to stay <em>small.</em></h2>
             <p class="cat-sub reveal" style="--d:80">Identifying field marks.</p>
@@ -153,96 +287,6 @@
           <div class="mark-row reveal"><span class="ix">ii</span><h3>Restraint.</h3><p>We would rather ship one considered mechanic than three loud ones. The hard part is deciding what not to build.</p></div>
           <div class="mark-row reveal"><span class="ix">iii</span><h3>Respect.</h3><p>A player's time and attention are a trust, not a resource to mine. No dark patterns, no manipulative economies — the game is the whole product.</p></div>
           <div class="mark-row reveal"><span class="ix">iv</span><h3>Craft.</h3><p>A game is engineering and art at once — measured, fast, and correct, but also a joy to play. We refuse to choose.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 02 GAMES -->
-    <section class="section section--line" id="games" aria-labelledby="games-t">
-      <div class="wrap">
-        <div class="cat-head">
-          <span class="cat-num reveal">02</span>
-          <div>
-            <h2 class="cat-title reveal" id="games-t">What we <em>make.</em></h2>
-            <p class="cat-sub reveal" style="--d:80">Three games, held to one standard.</p>
-          </div>
-        </div>
-
-        <div class="grid12" style="row-gap:clamp(20px,3vw,30px)">
-          <article class="plate reveal" style="grid-column:1/span 12">
-            <div class="plate-head">
-              <div>
-                <p class="plate-name"><span class="dot"></span>Painted Crowns</p>
-              </div>
-              <p class="plate-kind">Dungeon roguelike</p>
-            </div>
-            <div class="plate-body">
-              <p class="sum">A dungeon that grows from a single seed.</p>
-              <p>Every floor is procedurally generated — grown from a seed rather than hand-placed — and the difficulty adapts to how you actually play. Built in Unity. No two descents are the same, and none of them are unfair.</p>
-              <dl class="specs">
-                <div><dt>Procedural depth</dt><dd>Floors grown from a single seed — coherent and surprising, never the same twice.</dd></div>
-                <div><dt>Adaptive difficulty</dt><dd>The dungeon reads how you play and pushes back to match — challenging, never cheap.</dd></div>
-                <div><dt>Roguelike discipline</dt><dd>Runs that matter. Death is permanent; what you learn is not.</dd></div>
-                <div><dt>Status</dt><dd>Available now on Steam.</dd></div>
-              </dl>
-              <p class="btnrow" style="margin:1.1em 0 0;justify-content:space-between">
-                <a class="tlink magnetic" href="contact.html#cform">Talk to us about Painted Crowns <span class="arr" aria-hidden="true">→</span></a>
-                <a class="btn magnetic" style="padding:10px" href="https://store.steampowered.com/app/5192590/Painted_Crowns/" aria-label="View Painted Crowns on Steam" title="View Painted Crowns on Steam">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg>
-                </a>
-              </p>
-            </div>
-          </article>
-
-          <article class="plate reveal" style="grid-column:1/span 12;--d:80">
-            <div class="plate-head">
-              <div>
-                <p class="plate-name"><span class="dot"></span>Klast</p>
-              </div>
-              <p class="plate-kind">Twin-stick arcade shooter</p>
-            </div>
-            <div class="plate-body">
-              <p class="sum">A neon arcade shooter built for one more run.</p>
-              <p>A high-intensity twin-stick shooter about speed, precision, and replayability. You pilot a customizable starfighter across three distinct combat systems, each with its own enemies, bosses, hazards, upgrades, and scoring — rendered in low-poly geometry and neon wireframe, with chromatic light, particle-heavy destruction, and transitions that move with the music.</p>
-              <dl class="specs">
-                <div><dt>Cycle</dt><dd>Structured rescue missions, built on precision under pressure.</dd></div>
-                <div><dt>Vector</dt><dd>Escalating arena warfare against swarms that keep coming.</dd></div>
-                <div><dt>Asteroid</dt><dd>Fully spherical planetary battles with destructible asteroids — combat wrapped around a whole world.</dd></div>
-                <div><dt>Beyond the campaigns</dt><dd>Challenge modes, endless progression, a shared hangar, achievements, bestiary entries, rankings, exportable scorecards, and AI pilots flying attract-mode demos.</dd></div>
-              </dl>
-              <p class="btnrow" style="margin:1.1em 0 0;justify-content:space-between">
-                <a class="tlink magnetic" href="contact.html#cform">Tell us about your best run <span class="arr" aria-hidden="true">→</span></a>
-                <a class="btn magnetic" style="padding:10px" href="https://store.steampowered.com/app/5068020/KLAST/" aria-label="View Klast on Steam" title="View Klast on Steam">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg>
-                </a>
-              </p>
-            </div>
-          </article>
-
-          <article class="plate reveal" style="grid-column:1/span 12;--d:160">
-            <div class="plate-head">
-              <div>
-                <p class="plate-name"><span class="dot"></span>Shatterwing</p>
-              </div>
-              <p class="plate-kind">Vertical bullet hell shooter</p>
-            </div>
-            <div class="plate-body">
-              <p class="sum">Turn their fire against them.</p>
-              <p>An invading fleet has learned humanity's flight patterns. Give it something it hasn't seen before. Every dash leaves a glass mirror in your wake — place it across an incoming volley and send their shots back into the fleet. Graze bullets, keep your kill chain alive, and charge your mirrors toward homing returns.</p>
-              <dl class="specs">
-                <div><dt>Mirror combat</dt><dd>Reflect incoming volleys and turn desperate escapes into devastating counterattacks.</dd></div>
-                <div><dt>Your ship, your run</dt><dd>Six distinct ships, 24 weapon configurations, and two selectable specials per ship — from slowing time to unleashing a giant beam.</dd></div>
-                <div><dt>Polarity</dt><dd>Switch colors to absorb matching bullets, store their energy, and release homing volleys in a second campaign mode.</dd></div>
-                <div><dt>Beyond the clear</dt><dd>Five stages, five difficulty levels, Flight Academy, Practice, Boss Run, hidden encounters, and unlockable pilot stories.</dd></div>
-              </dl>
-              <p class="btnrow" style="margin:1.1em 0 0;justify-content:space-between">
-                <a class="tlink magnetic" href="contact.html#cform">Ask about Shatterwing <span class="arr" aria-hidden="true">→</span></a>
-                <a class="btn magnetic" style="padding:10px" href="https://store.steampowered.com/app/5286270/Shatterwing" aria-label="View Shatterwing on Steam" title="View Shatterwing on Steam">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z"/></svg>
-                </a>
-              </p>
-            </div>
-          </article>
         </div>
       </div>
     </section>

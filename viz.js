@@ -1,13 +1,14 @@
-/* Ursavus v2 — hero field (matches v1's About hero). Animated implicit plot
-   drawn by marching squares:  sin(k cos y + sin x) = sin(k cos x + sin y)
-   k sweeps; move the cursor left<->right to scrub k yourself. */
+/* Ursavus — a living implicit plot, drawn with marching squares.
+   The original interference field and bear-forming lattice remain intact;
+   optional hero controls add a quiet orbital field and a motion toggle. */
 (function () {
   "use strict";
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var motionQuery = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
+  var reduce = !!(motionQuery && motionQuery.matches);
 
   function colors(root) {
     var s = getComputedStyle(root);
-    return { accent: s.getPropertyValue("--accent").trim(), accent2: s.getPropertyValue("--accent-2").trim() };
+    return { accent: s.getPropertyValue("--accent").trim() || "#7C73FF", accent2: s.getPropertyValue("--accent-2").trim() || "#54E3C6" };
   }
   function setup(canvas) {
     var ctx = canvas.getContext("2d"), dpr = 0, W = 0, H = 0;
@@ -32,24 +33,49 @@
 
   function initField() {
     var canvas = document.getElementById("field");
-    if (!canvas) return;
+    if (!canvas || !canvas.getContext("2d")) return;
     var root = document.documentElement, s = setup(canvas), C = colors(root);
-    window.addEventListener("urs:theme", function () { C = colors(root); });
-
     var MS = [[], [3, 0], [0, 1], [3, 1], [1, 2], [3, 0, 1, 2], [0, 2], [3, 2], [2, 3], [0, 2], [0, 1, 2, 3], [1, 2], [3, 1], [0, 1], [3, 0], []];
-    var mode = canvas.getAttribute("data-mode") || "ripple";   // "ripple" (home/contact) | "lattice" (about)
-    var t = 0, raf, mx = -1e5, hovering = false, kval = 3, kdir = 1, kdwell = 0, px = 0, py = 0, tpx = 0, tpy = 0;
-    if (mode === "lattice") {
-      var host = canvas.parentElement || canvas;
-      host.addEventListener("pointermove", function (e) { var r = canvas.getBoundingClientRect(); mx = e.clientX - r.left; hovering = true; });
-      host.addEventListener("pointerleave", function () { hovering = false; });
-    } else {
-      window.addEventListener("pointermove", function (e) { tpx = (e.clientX / window.innerWidth) * 2 - 1; tpy = (e.clientY / window.innerHeight) * 2 - 1; }, { passive: true });
+    var mode = canvas.getAttribute("data-mode") || "ripple";
+    if (["ripple", "lattice", "orbit"].indexOf(mode) < 0) mode = "ripple";
+    var host = canvas.parentElement || canvas;
+    var consoleEl = canvas.closest(".field-console");
+    var buttons = document.querySelectorAll("[data-field-mode]");
+    var pauseButton = document.querySelector("[data-field-pause]");
+    var caption = document.getElementById("field-caption");
+    var value = document.getElementById("field-value");
+    var modeNames = { ripple: "Interference", lattice: "Dawn bear", orbit: "Orbital" };
+    var t = 0, raf = null, last = 0, visible = true, paused = reduce;
+    var mx = -1e5, hovering = false, kval = 3, kdir = 1, kdwell = 0;
+    var px = 0, py = 0, tpx = 0, tpy = 0, fld = null;
+
+    function syncControls() {
+      for (var i = 0; i < buttons.length; i++) buttons[i].setAttribute("aria-pressed", String(buttons[i].getAttribute("data-field-mode") === mode));
+      if (caption) caption.textContent = modeNames[mode];
+      if (pauseButton) {
+        pauseButton.setAttribute("aria-pressed", String(paused));
+        pauseButton.setAttribute("aria-label", paused ? "Play field animation" : "Pause field animation");
+        var pauseLabel = pauseButton.querySelector("[data-field-pause-label]");
+        (pauseLabel || pauseButton).textContent = paused ? "Play motion" : "Pause motion";
+      }
     }
 
-    function frame() {
+    // Pointer input is local to the artwork; touch scrolling remains native.
+    host.addEventListener("pointermove", function (e) {
+      if (e.pointerType === "touch") return;
+      var r = canvas.getBoundingClientRect();
+      mx = e.clientX - r.left;
+      hovering = mx >= 0 && mx <= r.width && e.clientY >= r.top && e.clientY <= r.bottom;
+      tpx = Math.max(-1, Math.min(1, mx / Math.max(1, r.width) * 2 - 1));
+      tpy = Math.max(-1, Math.min(1, (e.clientY - r.top) / Math.max(1, r.height) * 2 - 1));
+    }, { passive: true });
+    host.addEventListener("pointerleave", function () { hovering = false; tpx = 0; tpy = 0; });
+
+    function draw(step) {
       if (s.stale()) s.resize();
       var W = s.W(), H = s.H(), ctx = s.ctx, light = !!(window.URS && window.URS.isLight && window.URS.isLight());
+      if (!W || !H) return;
+      t += step;
       ctx.clearRect(0, 0, W, H);
 
       var k, unit, ox, oy, x0, cell;
@@ -57,38 +83,47 @@
         // k carries its own position + direction; on leaving the hover it keeps going the
         // way it was already heading. There are complete bears at BOTH ends (k = ±5) with
         // grid in the middle, so it only ever turns around at an end — never mid-stroke.
-        if (hovering) {
+        if (step && hovering) {
           var target = Math.max(-5, Math.min(5, (mx / W) * 10 - 5));
           if (Math.abs(target - kval) > 0.0015) kdir = target > kval ? 1 : -1;   // follow the cursor's direction (ignore a still cursor)
-          kval += (target - kval) * 0.045;          // ease toward the cursor
-        } else if (kdwell > 0) {
-          kdwell--;                                  // hold on a finished bear
-        } else {
+          kval += (target - kval) * (1 - Math.pow(0.955, step));
+        } else if (step && kdwell > 0) {
+          kdwell -= step;                            // hold on a finished bear
+        } else if (step) {
           if (kval >= 5 && kdir > 0) { kdir = -1; kdwell = 170; }        // bear complete at +5 — hold, then ease back
           else if (kval <= -5 && kdir < 0) { kdir = 1; kdwell = 170; }   // bear complete at -5 — hold, then ease back
-          kval += kdir * 0.0065;                     // self-contained drift, never reverses mid-stroke
+          kval = Math.max(-5, Math.min(5, kval + kdir * 0.0065 * step));
         }
         k = kval;
-        unit = Math.min(W, H) / 15; ox = W * 0.6; oy = H * 0.5; x0 = W * 0.1; cell = Math.max(9, Math.min(W, H) / 66);
+        unit = Math.min(W, H) / (consoleEl ? 12 : 15); ox = W * (consoleEl ? 0.5 : 0.6); oy = H * 0.5; x0 = consoleEl ? 0 : W * 0.1; cell = Math.max(7, Math.min(W, H) / 66);
       } else {
-        px += (tpx - px) * 0.05; py += (tpy - py) * 0.05;
-        k = 5 + 5 * Math.sin(t * 0.0026);
-        unit = Math.min(W, H) / 9; ox = W * 0.72 + px * W * 0.05; oy = H * 0.40 + py * H * 0.05; x0 = 0; cell = Math.max(8, Math.min(W, H) / 72);
+        if (step) { px += (tpx - px) * (1 - Math.pow(0.95, step)); py += (tpy - py) * (1 - Math.pow(0.95, step)); }
+        k = mode === "orbit" ? 3 + 1.5 * Math.sin(t * 0.0016) : 5 + 5 * Math.sin(t * 0.0026);
+        unit = Math.min(W, H) / 9; ox = W * (consoleEl ? 0.5 : 0.72) + px * W * 0.025; oy = H * (consoleEl ? 0.5 : 0.4) + py * H * 0.025; x0 = 0; cell = Math.max(7, Math.min(W, H) / 72);
       }
       var nx = Math.ceil((W - x0) / cell), ny = Math.ceil(H / cell), W1 = nx + 1;
-      var fld = new Float32Array(W1 * (ny + 1)), gi, gj, X, Y;
+      var count = W1 * (ny + 1), gi, gj, X, Y;
+      if (!fld || fld.length !== count) fld = new Float32Array(count);
       for (gj = 0; gj <= ny; gj++) {
         Y = -(gj * cell - oy) / unit;
         for (gi = 0; gi <= nx; gi++) {
           X = (x0 + gi * cell - ox) / unit;
           fld[gj * W1 + gi] = mode === "lattice"
             ? Math.sin(k * Math.cos(Y) + Math.sin(X)) - Math.sin(k * Math.cos(X) + Math.sin(Y))
-            : Math.sin(X * X + Y * Y + X * Y) - Math.sin(k + Math.sin(k * X) + Math.cos(k * Y));
+            : mode === "orbit"
+              ? Math.sin(0.72 * X * X + 1.35 * Y * Y - k * 0.55) - 0.48 * Math.cos(1.75 * X + 0.75 * Y + k * 0.32)
+              : Math.sin(X * X + Y * Y + X * Y) - Math.sin(k + Math.sin(k * X) + Math.cos(k * Y));
         }
       }
 
+      // A restrained glow gives the lines depth without becoming a backdrop to text.
+      var wash = ctx.createRadialGradient(ox, oy, 0, ox, oy, Math.min(W, H) * 0.55);
+      wash.addColorStop(0, C.accent2); wash.addColorStop(1, "transparent");
+      ctx.fillStyle = wash; ctx.globalAlpha = light ? 0.025 : 0.065; ctx.fillRect(0, 0, W, H);
+      var ink = ctx.createLinearGradient(0, H, W, 0);
+      ink.addColorStop(0, C.accent); ink.addColorStop(0.55, C.accent); ink.addColorStop(1, C.accent2);
       ctx.globalCompositeOperation = light ? "source-over" : "lighter";
-      ctx.strokeStyle = C.accent; ctx.globalAlpha = light ? 0.6 : 0.46; ctx.lineWidth = 1.15; ctx.lineJoin = "round";
+      ctx.strokeStyle = ink; ctx.lineJoin = "round";
       ctx.beginPath();
       for (gj = 0; gj < ny; gj++) {
         var yT = gj * cell, yB = yT + cell, rT = gj * W1, rB = rT + W1;
@@ -105,7 +140,23 @@
           }
         }
       }
-      ctx.stroke();
+      ctx.globalAlpha = light ? 0.045 : 0.04; ctx.lineWidth = 5; ctx.stroke();
+      ctx.globalAlpha = light ? 0.5 : 0.53; ctx.lineWidth = mode === "orbit" ? 0.95 : 1.1; ctx.stroke();
+
+      // Coordinates and satellite points belong to the optional artwork panel only.
+      if (consoleEl) {
+        ctx.strokeStyle = C.accent2; ctx.globalAlpha = light ? 0.22 : 0.27; ctx.lineWidth = 0.7;
+        ctx.setLineDash([2, 7]); ctx.beginPath();
+        ctx.moveTo(ox - 13, oy); ctx.lineTo(ox + 13, oy);
+        ctx.moveTo(ox, oy - 13); ctx.lineTo(ox, oy + 13); ctx.stroke(); ctx.setLineDash([]);
+        for (var satellite = 0; satellite < 3; satellite++) {
+          var angle = t * 0.0016 + satellite * Math.PI * 2 / 3;
+          var radius = Math.min(W, H) * (0.29 + satellite * 0.055);
+          var sx = ox + Math.cos(angle) * radius, sy = oy + Math.sin(angle) * radius * 0.74;
+          ctx.beginPath(); ctx.arc(sx, sy, 2, 0, Math.PI * 2); ctx.fillStyle = C.accent2; ctx.globalAlpha = light ? 0.6 : 0.75; ctx.fill();
+          ctx.beginPath(); ctx.arc(sx, sy, 6, 0, Math.PI * 2); ctx.globalAlpha = light ? 0.2 : 0.3; ctx.stroke();
+        }
+      }
 
       // eyes — the lattice tiles into bear faces. The big heads are centred on the
       // a+b EVEN (saddle) nodes; drop a growing pair of eyes in each head's face,
@@ -139,19 +190,48 @@
         }
       }
       ctx.globalCompositeOperation = "source-over"; ctx.globalAlpha = 1;
-      t += 1; raf = requestAnimationFrame(frame);
+      if (value) value.textContent = k.toFixed(2);
     }
 
-    function redrawOnce() { frame(); cancelAnimationFrame(raf); raf = null; }
-    window.addEventListener("resize", function () { s.resize(); if (!raf) redrawOnce(); });
-    if ("ResizeObserver" in window) new ResizeObserver(function () { if (s.stale()) { s.resize(); if (!raf) redrawOnce(); } }).observe(canvas);
-    if (reduce) { frame(); cancelAnimationFrame(raf); raf = null; }
-    else {
+    function running() { return !paused && visible && !document.hidden; }
+    function frame(now) {
+      raf = null;
+      if (!running()) { last = 0; return; }
+      // Limit the expensive contour calculation to 30 fps, independent of display rate.
+      if (!last || now - last >= 1000 / 30) {
+        var step = last ? Math.min(3, (now - last) / (1000 / 60)) : 1;
+        last = now; draw(step);
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    function reconcile() {
+      if (running()) { if (raf === null) { last = 0; raf = requestAnimationFrame(frame); } }
+      else if (raf !== null) { cancelAnimationFrame(raf); raf = null; last = 0; }
+    }
+    function refresh() { draw(0); reconcile(); }
+    for (var i = 0; i < buttons.length; i++) buttons[i].addEventListener("click", function () {
+      var next = this.getAttribute("data-field-mode");
+      if (!modeNames[next]) return;
+      mode = next; canvas.setAttribute("data-mode", mode);
+      if (mode === "lattice") { kval = 5; kdir = -1; kdwell = 170; }
+      hovering = false; syncControls(); refresh();
+    });
+    if (pauseButton) pauseButton.addEventListener("click", function () { paused = !paused; syncControls(); reconcile(); });
+    window.addEventListener("urs:theme", function () { C = colors(root); refresh(); });
+    window.addEventListener("resize", function () { s.resize(); refresh(); }, { passive: true });
+    document.addEventListener("visibilitychange", reconcile);
+    if ("ResizeObserver" in window) new ResizeObserver(function () { if (s.stale()) { s.resize(); refresh(); } }).observe(canvas);
+    if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (en) {
-        if (en[0].isIntersecting) { if (!raf) raf = requestAnimationFrame(frame); }
-        else { cancelAnimationFrame(raf); raf = null; }
+        visible = en[0].isIntersecting; reconcile();
       }).observe(canvas);
     }
+    if (motionQuery) {
+      var updateMotion = function (event) { reduce = event.matches; paused = reduce; syncControls(); refresh(); };
+      if (motionQuery.addEventListener) motionQuery.addEventListener("change", updateMotion);
+      else if (motionQuery.addListener) motionQuery.addListener(updateMotion);
+    }
+    syncControls(); refresh();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initField);
