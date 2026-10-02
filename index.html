@@ -16,14 +16,19 @@
     (function(){var t;try{t=localStorage.getItem("urs-theme");}catch(e){}
       if(t!=="light"&&t!=="dark"){t="dark";}
       document.documentElement.setAttribute("data-theme",t);document.documentElement.classList.add("js");
-      try{if("scrollRestoration"in history)history.scrollRestoration="manual";}catch(e2){}})();
+      try{if("scrollRestoration"in history)history.scrollRestoration="manual";}catch(e2){}
+      /* the studio opening: a fresh load or a reload, once per visit, never a deep link */
+      try{var n=performance.getEntriesByType("navigation")[0],k=n&&n.type,f=/[?&]intro(=|&|$)/.test(location.search);
+        if(f||(!location.hash&&k!=="back_forward"&&(k==="reload"||sessionStorage.getItem("urs-intro")!=="1"))){
+          sessionStorage.setItem("urs-intro","1");document.documentElement.classList.add("intro");
+          var l=document.createElement("link");l.rel="preload";l.as="font";l.type="font/woff2";l.href="fonts/orbitron.woff2";l.crossOrigin="anonymous";document.head.appendChild(l);}}catch(e3){}})();
   </script>
   <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preload" href="fonts/fraunces-600.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20261002-2">
+  <link rel="stylesheet" href="styles.css?v=20261002-3">
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
@@ -359,7 +364,8 @@
     </div>
   </footer>
 
-  <script defer src="app.js?v=20261002-2"></script>
-  <script defer src="viz.js?v=20261002-2"></script>
+  <script defer src="intro.js?v=20261002-3"></script>
+  <script defer src="app.js?v=20261002-3"></script>
+  <script defer src="viz.js?v=20261002-3"></script>
 </body>
 </html>
